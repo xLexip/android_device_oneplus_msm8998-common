@@ -20,6 +20,7 @@
         "1555200",
         "1478400",
         "1171200",
+        "1094400",
         "0"
       ],
       "ResetOnInit": true
@@ -46,6 +47,7 @@
         "1420800",
         "1344000",
         "1132800",
+        "979200",
         "0"
       ],
       "ResetOnInit": true
@@ -85,8 +87,8 @@
       "Name": "TASchedtuneBoost",
       "Path": "/dev/stune/top-app/schedtune.boost",
       "Values": [
-        "50",
-        "10"
+        "10",
+        "5"
       ],
       "ResetOnInit": true
     },
@@ -317,19 +319,19 @@
       "PowerHint": "INTERACTION",
       "Node": "CPUBigClusterMinFreq",
       "Duration": 0,
-      "Value": "1132800"
+      "Value": "979200"
     },
     {
       "PowerHint": "INTERACTION",
       "Node": "CPULittleClusterMinFreq",
       "Duration": 0,
-      "Value": "1171200"
+      "Value": "1094400"
     },
     {
       "PowerHint": "INTERACTION",
       "Node": "TASchedtuneBoost",
       "Duration": 0,
-      "Value": "50"
+      "Value": "10"
     },
     {
       "PowerHint": "INTERACTION",
@@ -358,49 +360,49 @@
     {
       "PowerHint": "LAUNCH",
       "Node": "CPUBigClusterMaxFreq",
-      "Duration": 3000,
+      "Duration": 1500,
       "Value": "2457600"
     },
     {
       "PowerHint": "LAUNCH",
       "Node": "CPUBigClusterMinFreq",
-      "Duration": 3000,
+      "Duration": 1500,
       "Value": "2457600"
     },
     {
       "PowerHint": "LAUNCH",
       "Node": "CPULittleClusterMinFreq",
-      "Duration": 3000,
+      "Duration": 1500,
       "Value": "1900800"
     },
     {
       "PowerHint": "LAUNCH",
       "Node": "PMQoSCpuDmaLatency",
-      "Duration": 3000,
+      "Duration": 1500,
       "Value": "2c"
     },
     {
       "PowerHint": "LAUNCH",
       "Node": "CPUBWHystTriggerCount",
-      "Duration": 3000,
+      "Duration": 1500,
       "Value": "0"
     },
     {
       "PowerHint": "LAUNCH",
       "Node": "CPUBWHystLength",
-      "Duration": 3000,
+      "Duration": 1500,
       "Value": "0"
     },
     {
       "PowerHint": "LAUNCH",
       "Node": "CPUBWHistMemory",
-      "Duration": 3000,
+      "Duration": 1500,
       "Value": "0"
     },
     {
       "PowerHint": "LAUNCH",
       "Node": "CPUBWMinFreq",
-      "Duration": 3000,
+      "Duration": 1500,
       "Value": "13763"
     },
     {
