@@ -121,6 +121,9 @@ OVERRIDE_RS_DRIVER:= libRSDriver_adreno.so
 # DRM
 TARGET_ENABLE_MEDIADRM_64 := true
 
+# Enable dexpreopt to speed boot time
+WITH_DEXPREOPT := true
+
 # Filesystem
 TARGET_FS_CONFIG_GEN += $(PLATFORM_PATH)/config.fs
 
