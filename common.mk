@@ -488,6 +488,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     vendor.lineage.touch@1.0-service.oneplus_msm8998
 
+# Tracing
+PRODUCT_PACKAGES += \
+    android.hardware.atrace@1.0-service.pixel
+
 # USB
 PRODUCT_PACKAGES += \
     android.hardware.usb@1.0-service.basic
