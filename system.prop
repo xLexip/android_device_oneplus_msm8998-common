@@ -32,6 +32,7 @@ persist.camera.stats.debugexif=3080192
 ro.charger.enable_suspend=true
 
 # Data
+persist.vendor.data.iwlan.enable=true
 persist.radio.aosp_usr_pref_sel=true
 persist.radio.custom_ecc=1
 
