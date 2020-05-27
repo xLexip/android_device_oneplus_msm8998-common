@@ -152,6 +152,10 @@ on property:sys.shutdown.requested=*
     stop vendor.cnss-daemon
     stop vendor.per_proxy
 
+on property:vendor.post_boot.parsed=1
+    # Enable PowerHAL hint processing
+    setprop vendor.powerhal.init 1
+
 on charger
 #    start vendor.hvdcp_opti
     setprop sys.usb.configfs 1
@@ -281,6 +285,31 @@ service audiod /vendor/bin/audiod
 #    start usf-post-boot
 #
 #
+
+on boot
+    # Setup permission for Power HAL
+    chown system system /dev/stune/top-app/schedtune.boost
+    chown system system /sys/class/kgsl/kgsl-3d0/devfreq/min_freq
+    chown system system /sys/class/kgsl/kgsl-3d0/devfreq/max_freq
+    chown system system /sys/class/kgsl/kgsl-3d0/force_rail_on
+    chown system system /sys/class/kgsl/kgsl-3d0/force_clk_on
+    chown system system /sys/class/kgsl/kgsl-3d0/idle_timer
+    chown system system /sys/class/devfreq/soc:qcom,gpubw/min_freq
+    chown system system /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/min_freq
+
+    chmod 0664 /dev/stune/top-app/schedtune.boost
+    chmod 0664 /sys/class/kgsl/kgsl-3d0/devfreq/min_freq
+    chmod 0664 /sys/class/kgsl/kgsl-3d0/devfreq/max_freq
+    chmod 0664 /sys/class/kgsl/kgsl-3d0/force_rail_on
+    chmod 0664 /sys/class/kgsl/kgsl-3d0/force_clk_on
+    chmod 0664 /sys/class/kgsl/kgsl-3d0/idle_timer
+    chmod 0664 /sys/class/devfreq/soc:qcom,gpubw/min_freq
+    chmod 0664 /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/min_freq
+    
+    # DT2W Node
+    chown system system /proc/touchpanel/double_tap_enable
+    chmod 0660 /proc/touchpanel/double_tap_enable
+
 #on boot
 #    insmod /system/lib/modules/adsprpc.ko
 #    insmod /system/lib/modules/mhi.ko
