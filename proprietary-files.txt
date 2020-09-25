@@ -591,7 +591,7 @@ vendor/etc/qdcm_calib_data_samsung_s6e3fa5_1080p_cmd_mode_dsi_panel.xml
 vendor/etc/qdcm_calib_data_samsung_s6e3fa6_1080p_cmd_mode_dsi_panel.xml
 
 # DPM (product) - from jasmine V11.0.15.0.QDIMIXM
-product/bin/dpmd|49caa8e7d8af8055efdd7ebc0d7f7d67bc600041
+product/bin/dpmd|90cdd79b564456cef2a0c011afab3896463df5e4
 product/etc/dpm/dpm.conf|95e27da8c989e96c6faea6f0697bce11955b62a5
 product/etc/init/dpmd.rc|7f95195a89fddce06b93006a737701270e91f669
 product/etc/permissions/com.qti.dpmframework.xml|4613f8b8629d0b823e6aaab45d399ac30da06c09
@@ -1116,8 +1116,8 @@ vendor/lib/libqrtr.so
 vendor/lib64/libqrtr.so
 
 # Radio (from xiaomi/daisy/daisy_sprout:10/QKQ1.191002.002/V11.0.4.0.QDLMIXM)
-product/framework/qti-telephony-common.jar|11d6b89b31a9bf65218b3676c2bbd296275b1932
--product/priv-app/ims/ims.apk|9c4ca91e0ec7a567d22251d7ca0640abf13fdd7b
+product/framework/qti-telephony-common.jar|14e32b1cb0fdc9d7802414e95e41376499b51b11
+-product/priv-app/ims/ims.apk|7aff4613e75dfe90363409cf649e2a3e09469921
 
 # Radio
 etc/permissions/qcnvitems.xml:product/etc/permissions/qcnvitems.xml
