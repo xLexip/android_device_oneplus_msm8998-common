@@ -28,6 +28,7 @@
 #
 
 import /vendor/etc/init/hw/init.target.performance.rc
+import /vendor/etc/init/hw/init.target.displaymodes.rc
 
 on early-init
     symlink /data/vendor/tombstones /tombstones
