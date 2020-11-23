@@ -71,12 +71,6 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".TouchscreenGestureSettings"
-            android:label="@string/touchscreen_gesture_settings_title"
-            android:theme="@style/AppTheme">
-        </activity>
-
         <receiver android:name="com.oneplus.extras.DeviceSettings.Startup" >
             <intent-filter android:priority="100" >
                 <action android:name="android.intent.action.BOOT_COMPLETED" />

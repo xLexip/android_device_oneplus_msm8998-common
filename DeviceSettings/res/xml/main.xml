@@ -44,16 +44,7 @@
         android:key="gestures"
         android:title="@string/screen_gestures_panel_title">
 
-        <Preference
-            android:key="touchscreen_gesture_settings"
-            android:icon="@drawable/ic_gestures_icon"
-            android:title="@string/touchscreen_gesture_settings_title"
-            android:summary="@string/touchscreen_gesture_settings_summary"
-            android:persistent="false" >
-            <intent android:action="android.intent.action.MAIN"
-                    android:targetPackage="com.oneplus.extras.DeviceSettings"
-                    android:targetClass="com.oneplus.extras.DeviceSettings.TouchscreenGestureSettings" />
-        </Preference>
+
     </PreferenceCategory>
 
     <PreferenceCategory

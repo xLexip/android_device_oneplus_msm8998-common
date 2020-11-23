@@ -17,9 +17,6 @@
 */
 package com.oneplus.extras.DeviceSettings;
 
-import android.content.res.Resources;
-import android.util.Log;
-
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.content.pm.ApplicationInfo;
@@ -35,7 +32,6 @@ import java.io.FileReader;
 
 public class Utils {
 
-    private static final String TAG = Utils.class.getSimpleName();
 
     /**
      * Write a string value to the specified file.
@@ -133,26 +129,6 @@ public class Utils {
                 enabled != PackageManager.COMPONENT_ENABLED_STATE_DISABLED_USER;
         } catch (NameNotFoundException e) {
             return false;
-        }
-    }
-
-    public static String getLocalizedString(final Resources res,
-                                            final String stringName,
-                                            final String stringFormat) {
-        final String name = stringName.toLowerCase().replace(" ", "_");
-        final String nameRes = String.format(stringFormat, name);
-        return getStringForResourceName(res, nameRes, stringName);
-    }
-
-    public static String getStringForResourceName(final Resources res,
-                                                  final String resourceName,
-                                                  final String defaultValue) {
-        final int resId = res.getIdentifier(resourceName, "string", "com.oneplus.extras.DeviceSettings");
-        if (resId <= 0) {
-            Log.e(TAG, "No resource found for " + resourceName);
-            return defaultValue;
-        } else {
-            return res.getString(resId);
         }
     }
 }
