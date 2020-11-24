@@ -618,4 +618,7 @@
 
     <!-- Whether device has oled display -->
     <bool name="config_hasOledDisplay">true</bool>
+
+    <!-- Enable all rotations -->
+    <bool name="config_allowAllRotations">true</bool>
 </resources>
