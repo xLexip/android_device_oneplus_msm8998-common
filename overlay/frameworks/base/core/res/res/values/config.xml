@@ -613,4 +613,6 @@
     <!-- Allow devices override audio panel location to the left side -->
     <bool name="config_audioPanelOnLeftSide">true</bool>
 
+    <!-- Whether device has oled display -->
+    <bool name="config_hasOledDisplay">true</bool>
 </resources>
