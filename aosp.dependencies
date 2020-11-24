@@ -1,11 +1,10 @@
 [
   {
     "remote":      "github",
-    "repository":  "LineageOS-oneplus5/android_kernel_oneplus_msm8998",
+    "repository":  "crdroidandroid/android_kernel_oneplus_msm8998",
     "target_path": "kernel/oneplus/msm8998",
-    "branch":      "last_kmsg"
+    "branch":      "10"
   },
-
   {
     "repository": "packages_apps_PixelLiveWallpaper",
     "target_path": "packages/apps/PixelLiveWallpaper",
