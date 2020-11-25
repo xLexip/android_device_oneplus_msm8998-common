@@ -1,9 +1,9 @@
 [
   {
     "remote":      "github",
-    "repository":  "crdroidandroid/android_kernel_oneplus_msm8998",
+    "repository":  "ederekun/lazy_kernel_op5-t",
     "target_path": "kernel/oneplus/msm8998",
-    "branch":      "10"
+    "branch":      "X-alt"
   },
   {
     "repository": "packages_apps_PixelLiveWallpaper",
