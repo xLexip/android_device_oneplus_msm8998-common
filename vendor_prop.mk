@@ -259,6 +259,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     keyguard.no_require_sim=true \
     ro.com.android.dataroaming=true \
     persist.sys.oem_smooth=1 \
+    persist.sys.fflag.override.settings_network_and_internet_v2=true \
     persist.radio.multisim.config=dsds \
     persist.vendor.radio.apm_sim_not_pwdn=1 \
     persist.vendor.radio.custom_ecc=1 \
