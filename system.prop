@@ -71,6 +71,10 @@ persist.data.netmgrd.qos.enable=true
 persist.data.wda.enable=true
 persist.rmnet.data.enable=true
 
+# SurfaceFlinger
+ro.sf.blurs_are_expensive=1 
+ro.surface_flinger.supports_background_blur=1
+
 # TimeService
 persist.timed.enable=true
 
