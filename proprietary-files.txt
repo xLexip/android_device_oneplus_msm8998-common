@@ -201,10 +201,10 @@ vendor/lib/libmmcamera_hvx_add_constant.so
 vendor/lib/libmmcamera_hvx_grid_sum.so
 vendor/lib/libmmcamera_imglib.so
 vendor/lib/libmmcamera_imglib_faceproc_adspstub.so
-vendor/lib/libmmcamera_imx350.so|1e1efbbba891bc90444bf5ba4a05f6ddea193975
+vendor/lib/libmmcamera_imx350.so
 vendor/lib/libmmcamera_imx350_gt24c64ass_eeprom.so
-vendor/lib/libmmcamera_imx371.so|f7a735030ceedbcfc2eea484ee036f3b633231b4
-vendor/lib/libmmcamera_imx376k.so|61b755fc2220f83868b172ea06a65fb466da3c15
+vendor/lib/libmmcamera_imx371.so
+vendor/lib/libmmcamera_imx376k.so
 vendor/lib/libmmcamera_imx376k_gt24c64_eeprom.so
 vendor/lib/libmmcamera_imx398_gt24c64_eeprom.so
 vendor/lib/libmmcamera_interface.so
