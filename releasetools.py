@@ -14,37 +14,30 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import hashlib
-import common
-import re
-
 def FullOTA_Assertions(info):
-  AddVendorAssertion(info)
-  AddModemAssertion(info)
-  return
+    OTA_UpdateFirmware(info)
+    return
 
 def IncrementalOTA_Assertions(info):
-  AddVendorAssertion(info)
-  AddModemAssertion(info)
-  return
+    OTA_UpdateFirmware(info)
+    return
 
-def AddVendorAssertion(info):
-  cmd = 'assert(oneplus.file_exists("/dev/block/bootdevice/by-name/vendor") == "1" || \
-abort("Error: Vendor partition doesn\'t exist!"););'
-  info.script.AppendExtra(cmd)
-  return
-
-def AddModemAssertion(info):
-  android_info = info.input_zip.read("OTA/android-info.txt")
-  m = re.search(r'require\s+version-modem\s*=\s*(.+)', android_info)
-  f = re.search(r'require\s+version-firmware\s*=\s*(.+)', android_info)
-  if m and f:
-    version_modem = m.group(1).rstrip()
-    version_firmware = f.group(1).rstrip()
-    if ((len(version_modem) and '*' not in version_modem) and \
-    (len(version_firmware) and '*' not in version_firmware)):
-      cmd = 'assert(oneplus.verify_modem("' + version_modem + '") == "1" || \
-abort("Error: This package requires firmware version ' + version_firmware + \
-' or newer. Please upgrade firmware and retry!"););'
-      info.script.AppendExtra(cmd)
-  return
+def OTA_UpdateFirmware(info):
+    info.script.AppendExtra('ui_print("----------------------------------------------");')
+    info.script.AppendExtra('ui_print("---- Flashing required firmware and radio ----");')
+    info.script.AppendExtra('ui_print("----------------------------------------------");')
+    info.script.AppendExtra('package_extract_file("install/firmware-update/static_nvbk.bin", "/dev/block/bootdevice/by-name/oem_stanvbk");')  
+    info.script.AppendExtra('package_extract_file("install/firmware-update/cmnlib64.mbn", "/dev/block/bootdevice/by-name/cmnlib64");')
+    info.script.AppendExtra('package_extract_file("install/firmware-update/cmnlib.mbn", "/dev/block/bootdevice/by-name/cmnlib");')
+    info.script.AppendExtra('package_extract_file("install/firmware-update/hyp.mbn", "/dev/block/bootdevice/by-name/hyp");')
+    info.script.AppendExtra('package_extract_file("install/firmware-update/pmic.elf", "/dev/block/bootdevice/by-name/pmic");')
+    info.script.AppendExtra('package_extract_file("install/firmware-update/tz.mbn", "/dev/block/bootdevice/by-name/tz");')
+    info.script.AppendExtra('package_extract_file("install/firmware-update/abl.elf", "/dev/block/bootdevice/by-name/abl");')
+    info.script.AppendExtra('package_extract_file("install/firmware-update/devcfg.mbn", "/dev/block/bootdevice/by-name/devcfg");')
+    info.script.AppendExtra('package_extract_file("install/firmware-update/keymaster.mbn", "/dev/block/bootdevice/by-name/keymaster");')  
+    info.script.AppendExtra('package_extract_file("install/firmware-update/xbl.elf", "/dev/block/bootdevice/by-name/xbl");')
+    info.script.AppendExtra('package_extract_file("install/firmware-update/rpm.mbn", "/dev/block/bootdevice/by-name/rpm");')
+    info.script.AppendExtra('package_extract_file("install/firmware-update/logo.bin", "/dev/block/bootdevice/by-name/LOGO");')
+    info.script.AppendExtra('package_extract_file("install/firmware-update/NON-HLOS.bin", "/dev/block/bootdevice/by-name/modem");')
+    info.script.AppendExtra('package_extract_file("install/firmware-update/adspso.bin", "/dev/block/bootdevice/by-name/dsp");')
+    info.script.AppendExtra('package_extract_file("install/firmware-update/BTFM.bin", "/dev/block/bootdevice/by-name/bluetooth");')
