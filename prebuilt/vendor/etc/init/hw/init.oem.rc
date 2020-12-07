@@ -4,8 +4,8 @@ on init
     mount cgroup none /sys/fs/cgroup/freezer  freezer
     chmod 777 /sys/fs/cgroup/freezer
 
-    mkdir /sys/fs/cgroup/net_cls 
-    chmod 777 /sys/fs/cgroup/net_cls 
+    mkdir /sys/fs/cgroup/net_cls
+    chmod 777 /sys/fs/cgroup/net_cls
     mount cgroup  none /sys/fs/cgroup/net_cls net_cls
     chmod 777 /sys/fs/cgroup/net_cls/tasks
     mkdir /sys/fs/cgroup/net_cls/background 0777
@@ -100,7 +100,7 @@ on boot
     chmod 0666 /dev/qseecom
     # liuyan 2017/7/27 add for goodix fp
     chmod 0666 /dev/goodix_fp
-    
+
     # NFC, ruanbanmao add for 15801 nfc. 2015/10/19
     setprop ro.nfc.port "I2C"
     chmod 0666 /dev/nq-nci
@@ -127,12 +127,15 @@ on boot
     chown system system /sys/class/leds/blue/blink
     chown system system /sys/class/leds/green/blink
 
+    # Touchpanel
     chown system system /proc/touchpanel/gesture_enable
     chown system system /proc/touchpanel/gesture_switch
     chown system system /proc/touchpanel/key_switch
     chown system system /proc/touchpanel/key_disable
     chown system system /proc/touchpanel/tpedge_limit_enable
     chown system system /proc/touchpanel/tp_debug_log
+    chown system system /proc/touchpanel/double_tap_enable
+    chmod 0664 /proc/touchpanel/double_tap_enable
 
     chown system system /sys/bus/i2c/drivers/synaptics,s3320/tp_debug_log
     chmod 0666 /sys/bus/i2c/drivers/synaptics,s3320/tp_debug_log
