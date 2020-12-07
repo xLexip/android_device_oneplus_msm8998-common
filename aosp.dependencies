@@ -12,6 +12,11 @@
     "remote": "pixel-gitlab"
   },
   {
+    "repository": "TheMuppets/proprietary_vendor_oneplus",
+    "target_path": "vendor/oneplus",
+    "remote": "github"
+  },
+  {
     "repository": "vendor_oneplus_firmware",
     "target_path": "vendor/oneplus/firmware",
     "branch": "main",
