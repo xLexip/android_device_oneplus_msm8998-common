@@ -18,13 +18,6 @@
 -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-  <SwitchPreference
-      android:key="always_on_display"
-      android:defaultValue="false"
-      android:disableDependentsState="true"
-      android:title="@string/ambient_display_always_on_title"
-      android:summary="@string/ambient_display_always_on_summary" />
-
     <PreferenceCategory
         android:key="tilt_sensor"
         android:title="@string/tilt_sensor_title">
