@@ -29,24 +29,14 @@ public class DozeService extends Service {
     private static final String TAG = "DozeService";
     private static final boolean DEBUG = false;
 
-    private ProximitySensor mProximitySensor;
-    private TiltSensor mTiltSensor;
-    private BroadcastReceiver mScreenStateReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (intent.getAction().equals(Intent.ACTION_SCREEN_ON)) {
-                onDisplayOn();
-            } else if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
-                onDisplayOff();
-            }
-        }
-    };
+    private PickupSensor mPickupSensor;
+    private PocketSensor mPocketSensor;
 
     @Override
     public void onCreate() {
         if (DEBUG) Log.d(TAG, "Creating service");
-        mProximitySensor = new ProximitySensor(this);
-        mTiltSensor = new TiltSensor(this);
+        mPickupSensor = new PickupSensor(this);
+        mPocketSensor = new PocketSensor(this);
 
         IntentFilter screenStateFilter = new IntentFilter(Intent.ACTION_SCREEN_ON);
         screenStateFilter.addAction(Intent.ACTION_SCREEN_OFF);
@@ -64,8 +54,8 @@ public class DozeService extends Service {
         if (DEBUG) Log.d(TAG, "Destroying service");
         super.onDestroy();
         this.unregisterReceiver(mScreenStateReceiver);
-        mProximitySensor.disable();
-        mTiltSensor.disable();
+        mPickupSensor.disable();
+        mPocketSensor.disable();
     }
 
     @Override
@@ -76,22 +66,33 @@ public class DozeService extends Service {
     private void onDisplayOn() {
         if (DEBUG) Log.d(TAG, "Display on");
         if (Utils.isPickUpEnabled(this)) {
-            mTiltSensor.disable();
+            mPickupSensor.disable();
         }
         if (Utils.isHandwaveGestureEnabled(this) ||
                 Utils.isPocketGestureEnabled(this)) {
-            mProximitySensor.disable();
+            mPocketSensor.disable();
         }
     }
 
     private void onDisplayOff() {
         if (DEBUG) Log.d(TAG, "Display off");
         if (Utils.isPickUpEnabled(this)) {
-            mTiltSensor.enable();
+            mPickupSensor.enable();
         }
         if (Utils.isHandwaveGestureEnabled(this) ||
                 Utils.isPocketGestureEnabled(this)) {
-            mProximitySensor.enable();
+            mPocketSensor.enable();
         }
     }
+
+    private BroadcastReceiver mScreenStateReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(Intent.ACTION_SCREEN_ON)) {
+                onDisplayOn();
+            } else if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
+                onDisplayOff();
+            }
+        }
+    };
 }
