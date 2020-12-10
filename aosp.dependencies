@@ -1,9 +1,9 @@
 [
   {
     "remote":      "github",
-    "repository":  "ederekun/lazy_kernel_op5-t",
+    "repository":  "DerpFest-Devices/los_kernel_oneplus_msm8998",
     "target_path": "kernel/oneplus/msm8998",
-    "branch":      "X-alt"
+    "branch":      "11"
   },
   {
     "repository": "packages_apps_PixelLiveWallpaper",
