@@ -676,4 +676,7 @@
 
     <!-- True if the firmware supports connected MAC randomization -->
     <bool name="config_wifi_connected_mac_randomization_supported">true</bool>
+
+    <!-- For high brightness mode -->
+    <integer name="config_outdoorAmbientLux">20000</integer>
 </resources>
