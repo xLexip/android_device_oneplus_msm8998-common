@@ -41,13 +41,6 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:key="gestures"
-        android:title="@string/screen_gestures_panel_title">
-
-
-    </PreferenceCategory>
-
-    <PreferenceCategory
         android:key="fps"
         android:title="@string/fps_title">
 
@@ -91,7 +84,7 @@
           android:entryValues="@array/notification_slider_action_entry_values" />
     </PreferenceCategory>
 
-    <PreferenceCategory 
+    <PreferenceCategory
         android:title="@string/button_dashboard_summary">
 
         <SwitchPreference
