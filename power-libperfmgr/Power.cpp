@@ -14,21 +14,17 @@
  * limitations under the License.
  */
 
-#define ATRACE_TAG (ATRACE_TAG_POWER | ATRACE_TAG_HAL)
-#define LOG_TAG "android.hardware.power@1.3-service.pixel-libperfmgr"
+#define LOG_TAG "android.hardware.power@1.3-service.oneplus_msm8998-libperfmgr"
 
 #include <android-base/file.h>
 #include <android-base/logging.h>
 #include <android-base/properties.h>
-#include <android-base/stringprintf.h>
 #include <android-base/strings.h>
 
-#include <log/log.h>
+#include <utils/Log.h>
 #include <utils/Trace.h>
 
-#include "AudioStreaming.h"
 #include "Power.h"
-#include "display-helper.h"
 #include "power-helper.h"
 
 /* RPM runs at 19.2Mhz. Divide by 19200 for msec */
@@ -61,20 +57,10 @@ constexpr char kPowerHalInitProp[] = "vendor.powerhal.init";
 constexpr char kPowerHalRenderingProp[] = "vendor.powerhal.rendering";
 constexpr char kPowerHalConfigPath[] = "/vendor/etc/powerhint.json";
 
-static const std::map<enum CameraStreamingMode, std::string> kCamStreamingHint = {
-        {CAMERA_STREAMING_OFF, "CAMERA_STREAMING_OFF"},
-        {CAMERA_STREAMING, "CAMERA_STREAMING"},
-        {CAMERA_STREAMING_1080P, "CAMERA_STREAMING_1080P"},
-        {CAMERA_STREAMING_60FPS, "CAMERA_STREAMING_60FPS"},
-        {CAMERA_STREAMING_4K, "CAMERA_STREAMING_4K"},
-        {CAMERA_STREAMING_SECURE, "CAMERA_STREAMING_SECURE"}};
-
 Power::Power()
     : mHintManager(nullptr),
       mInteractionHandler(nullptr),
-      mVRModeOn(false),
       mSustainedPerfModeOn(false),
-      mCameraStreamingMode(CAMERA_STREAMING_OFF),
       mReady(false) {
     mInitThread = std::thread([this]() {
         android::base::WaitForProperty(kPowerHalInitProp, "1");
@@ -85,39 +71,10 @@ Power::Power()
         mInteractionHandler = std::make_unique<InteractionHandler>(mHintManager);
         mInteractionHandler->Init();
         std::string state = android::base::GetProperty(kPowerHalStateProp, "");
-        if (state == "CAMERA_STREAMING") {
-            ALOGI("Initialize with CAMERA_STREAMING on");
-            mHintManager->DoHint("CAMERA_STREAMING");
-            mCameraStreamingMode = CAMERA_STREAMING;
-        } else if (state == "CAMERA_STREAMING_1080P") {
-            ALOGI("Initialize CAMERA_STREAMING_1080P on");
-            mHintManager->DoHint("CAMERA_STREAMING_1080P");
-            mCameraStreamingMode = CAMERA_STREAMING_1080P;
-        } else if (state == "CAMERA_STREAMING_60FPS") {
-            ALOGI("Initialize CAMERA_STREAMING_60FPS on");
-            mHintManager->DoHint("CAMERA_STREAMING_60FPS");
-            mCameraStreamingMode = CAMERA_STREAMING_60FPS;
-        } else if (state == "CAMERA_STREAMING_4K") {
-            ALOGI("Initialize with CAMERA_STREAMING_4K on");
-            mHintManager->DoHint("CAMERA_STREAMING_4K");
-            mCameraStreamingMode = CAMERA_STREAMING_4K;
-        } else if (state == "CAMERA_STREAMING_SECURE") {
-            ALOGI("Initialize with CAMERA_STREAMING_SECURE on");
-            mHintManager->DoHint("CAMERA_STREAMING_SECURE");
-            mCameraStreamingMode = CAMERA_STREAMING_SECURE;
-        } else if (state == "SUSTAINED_PERFORMANCE") {
+        if (state == "SUSTAINED_PERFORMANCE") {
             ALOGI("Initialize with SUSTAINED_PERFORMANCE on");
             mHintManager->DoHint("SUSTAINED_PERFORMANCE");
             mSustainedPerfModeOn = true;
-        } else if (state == "VR_MODE") {
-            ALOGI("Initialize with VR_MODE on");
-            mHintManager->DoHint("VR_MODE");
-            mVRModeOn = true;
-        } else if (state == "VR_SUSTAINED_PERFORMANCE") {
-            ALOGI("Initialize with SUSTAINED_PERFORMANCE and VR_MODE on");
-            mHintManager->DoHint("VR_SUSTAINED_PERFORMANCE");
-            mSustainedPerfModeOn = true;
-            mVRModeOn = true;
         } else {
             ALOGI("Initialize PowerHAL");
         }
@@ -149,12 +106,11 @@ Return<void> Power::powerHint(PowerHint_1_0 hint, int32_t data) {
     if (!mReady) {
         return Void();
     }
-    ATRACE_INT(android::hardware::power::V1_0::toString(hint).c_str(), data);
     ALOGD_IF(hint != PowerHint_1_0::INTERACTION, "%s: %d",
              android::hardware::power::V1_0::toString(hint).c_str(), static_cast<int>(data));
     switch (hint) {
         case PowerHint_1_0::INTERACTION:
-            if (mVRModeOn || mSustainedPerfModeOn) {
+            if (mSustainedPerfModeOn) {
                 ALOGV("%s: ignoring due to other active perf hints", __func__);
             } else {
                 mInteractionHandler->Acquire(data);
@@ -162,42 +118,15 @@ Return<void> Power::powerHint(PowerHint_1_0 hint, int32_t data) {
             break;
         case PowerHint_1_0::SUSTAINED_PERFORMANCE:
             if (data && !mSustainedPerfModeOn) {
-                if (!mVRModeOn) {  // Sustained mode only.
-                    mHintManager->DoHint("SUSTAINED_PERFORMANCE");
-                } else {  // Sustained + VR mode.
-                    mHintManager->EndHint("VR_MODE");
-                    mHintManager->DoHint("VR_SUSTAINED_PERFORMANCE");
-                }
+                mHintManager->DoHint("SUSTAINED_PERFORMANCE");
                 mSustainedPerfModeOn = true;
             } else if (!data && mSustainedPerfModeOn) {
-                mHintManager->EndHint("VR_SUSTAINED_PERFORMANCE");
                 mHintManager->EndHint("SUSTAINED_PERFORMANCE");
-                if (mVRModeOn) {  // Switch back to VR Mode.
-                    mHintManager->DoHint("VR_MODE");
-                }
                 mSustainedPerfModeOn = false;
             }
             break;
-        case PowerHint_1_0::VR_MODE:
-            if (data && !mVRModeOn) {
-                if (!mSustainedPerfModeOn) {  // VR mode only.
-                    mHintManager->DoHint("VR_MODE");
-                } else {  // Sustained + VR mode.
-                    mHintManager->EndHint("SUSTAINED_PERFORMANCE");
-                    mHintManager->DoHint("VR_SUSTAINED_PERFORMANCE");
-                }
-                mVRModeOn = true;
-            } else if (!data && mVRModeOn) {
-                mHintManager->EndHint("VR_SUSTAINED_PERFORMANCE");
-                mHintManager->EndHint("VR_MODE");
-                if (mSustainedPerfModeOn) {  // Switch back to sustained Mode.
-                    mHintManager->DoHint("SUSTAINED_PERFORMANCE");
-                }
-                mVRModeOn = false;
-            }
-            break;
         case PowerHint_1_0::LAUNCH:
-            if (mVRModeOn || mSustainedPerfModeOn) {
+            if (mSustainedPerfModeOn) {
                 ALOGV("%s: ignoring due to other active perf hints", __func__);
             } else {
                 if (data) {
@@ -209,13 +138,6 @@ Return<void> Power::powerHint(PowerHint_1_0 hint, int32_t data) {
             }
             break;
         case PowerHint_1_0::LOW_POWER:
-            if (data) {
-                // Device in battery saver mode, enable display low power mode
-                set_display_lpm(true);
-            } else {
-                // Device exiting battery saver mode, disable display low power mode
-                set_display_lpm(false);
-            }
             break;
         default:
             break;
@@ -304,7 +226,6 @@ Return<void> Power::powerHintAsync_1_2(PowerHint_1_2 hint, int32_t data) {
         return Void();
     }
 
-    ATRACE_INT(android::hardware::power::V1_2::toString(hint).c_str(), data);
     ALOGD_IF(hint >= PowerHint_1_2::AUDIO_STREAMING, "%s: %d",
              android::hardware::power::V1_2::toString(hint).c_str(), static_cast<int>(data));
 
@@ -318,69 +239,14 @@ Return<void> Power::powerHintAsync_1_2(PowerHint_1_2 hint, int32_t data) {
             }
             break;
         case PowerHint_1_2::AUDIO_STREAMING:
-            if (mVRModeOn || mSustainedPerfModeOn) {
+            if (mSustainedPerfModeOn) {
                 ALOGV("%s: ignoring due to other active perf hints", __func__);
             } else {
-                if (data == static_cast<int32_t>(AUDIO_STREAMING_HINT::AUDIO_STREAMING_ON)) {
+                if (data) {
                     mHintManager->DoHint("AUDIO_STREAMING");
-                } else if (data ==
-                           static_cast<int32_t>(AUDIO_STREAMING_HINT::AUDIO_STREAMING_OFF)) {
-                    mHintManager->EndHint("AUDIO_STREAMING");
                 } else {
-                    ALOGE("AUDIO STREAMING INVALID DATA: %d", data);
+                    mHintManager->EndHint("AUDIO_STREAMING");
                 }
-            }
-            break;
-        case PowerHint_1_2::CAMERA_LAUNCH:
-            if (data > 0) {
-                mHintManager->DoHint("CAMERA_LAUNCH");
-            } else if (data == 0) {
-                mHintManager->EndHint("CAMERA_LAUNCH");
-            } else {
-                ALOGE("CAMERA LAUNCH INVALID DATA: %d", data);
-            }
-            break;
-        case PowerHint_1_2::CAMERA_STREAMING: {
-            const enum CameraStreamingMode mode = static_cast<enum CameraStreamingMode>(data);
-            if (mode < CAMERA_STREAMING_OFF || mode >= CAMERA_STREAMING_MAX) {
-                ALOGE("CAMERA STREAMING INVALID Mode: %d", mode);
-                break;
-            }
-
-            if (mCameraStreamingMode == mode)
-                break;
-
-            // turn it off first if any previous hint.
-            if ((mCameraStreamingMode != CAMERA_STREAMING_OFF)) {
-                const auto modeValue = kCamStreamingHint.at(mCameraStreamingMode);
-                mHintManager->EndHint(modeValue);
-                if ((mCameraStreamingMode != CAMERA_STREAMING_SECURE)) {
-                    // Boost 1s for tear down if not secure streaming use case
-                    mHintManager->DoHint("CAMERA_LAUNCH", std::chrono::seconds(1));
-                }
-            }
-
-            if (mode != CAMERA_STREAMING_OFF) {
-                const auto hintValue = kCamStreamingHint.at(mode);
-                mHintManager->DoHint(hintValue);
-            }
-
-            mCameraStreamingMode = mode;
-            const auto prop = (mCameraStreamingMode == CAMERA_STREAMING_OFF)
-                                  ? ""
-                                  : kCamStreamingHint.at(mode).c_str();
-            if (!android::base::SetProperty(kPowerHalStateProp, prop)) {
-                ALOGE("%s: could set powerHAL state %s property", __func__, prop);
-            }
-            break;
-        }
-        case PowerHint_1_2::CAMERA_SHOT:
-            if (data > 0) {
-                mHintManager->DoHint("CAMERA_SHOT", std::chrono::milliseconds(data));
-            } else if (data == 0) {
-                mHintManager->EndHint("CAMERA_SHOT");
-            } else {
-                ALOGE("CAMERA SHOT INVALID DATA: %d", data);
             }
             break;
         default:
@@ -396,8 +262,7 @@ Return<void> Power::powerHintAsync_1_3(PowerHint_1_3 hint, int32_t data) {
     }
 
     if (hint == PowerHint_1_3::EXPENSIVE_RENDERING) {
-        ATRACE_INT(android::hardware::power::V1_3::toString(hint).c_str(), data);
-        if (mVRModeOn || mSustainedPerfModeOn) {
+        if (mSustainedPerfModeOn) {
             ALOGV("%s: ignoring due to other active perf hints", __func__);
         } else {
             if (data > 0) {
@@ -408,32 +273,6 @@ Return<void> Power::powerHintAsync_1_3(PowerHint_1_3 hint, int32_t data) {
         }
     } else {
         return powerHintAsync_1_2(static_cast<PowerHint_1_2>(hint), data);
-    }
-    return Void();
-}
-
-constexpr const char *boolToString(bool b) {
-    return b ? "true" : "false";
-}
-
-Return<void> Power::debug(const hidl_handle &handle, const hidl_vec<hidl_string> &) {
-    if (handle != nullptr && handle->numFds >= 1 && mReady) {
-        int fd = handle->data[0];
-
-        std::string buf(android::base::StringPrintf(
-            "HintManager Running: %s\n"
-            "VRMode: %s\n"
-            "CameraStreamingMode: %s\n"
-            "SustainedPerformanceMode: %s\n",
-            boolToString(mHintManager->IsRunning()), boolToString(mVRModeOn),
-            kCamStreamingHint.at(mCameraStreamingMode).c_str(),
-            boolToString(mSustainedPerfModeOn)));
-        // Dump nodes through libperfmgr
-        mHintManager->DumpToFd(fd);
-        if (!android::base::WriteStringToFd(buf, fd)) {
-            PLOG(ERROR) << "Failed to dump state to fd";
-        }
-        fsync(fd);
     }
     return Void();
 }

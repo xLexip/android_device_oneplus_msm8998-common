@@ -26,7 +26,6 @@
 #include <hidl/Status.h>
 #include <perfmgr/HintManager.h>
 
-#include "CameraMode.h"
 #include "InteractionHandler.h"
 
 namespace android {
@@ -67,14 +66,11 @@ class Power : public IPower {
     Return<void> powerHintAsync_1_3(PowerHint_1_3 hint, int32_t data) override;
 
     // Methods from ::android::hidl::base::V1_0::IBase follow.
-    Return<void> debug(const hidl_handle &fd, const hidl_vec<hidl_string> &args) override;
 
   private:
     std::shared_ptr<HintManager> mHintManager;
     std::unique_ptr<InteractionHandler> mInteractionHandler;
-    std::atomic<bool> mVRModeOn;
     std::atomic<bool> mSustainedPerfModeOn;
-    std::atomic<enum CameraStreamingMode> mCameraStreamingMode;
     std::atomic<bool> mReady;
     std::thread mInitThread;
 };
