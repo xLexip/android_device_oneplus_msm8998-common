@@ -99,8 +99,5 @@
 # Touch
 /(vendor|system/vendor)/bin/hw/vendor\.lineage\.touch@1\.0-service\.oneplus_msm8998    u:object_r:hal_touch_oneplus_msm8998_exec:s0
 
-# Tracing
-/(vendor|system/vendor)/bin/hw/android\.hardware\.atrace@1.0-service\.pixel     u:object_r:hal_atrace_default_exec:s0
-
 # Wifi
 /(vendor|system/vendor)/bin/wifi-mac-generator                  u:object_r:wifi_mac_generator_exec:s0
