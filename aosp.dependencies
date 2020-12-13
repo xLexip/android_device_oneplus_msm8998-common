@@ -1,23 +1,14 @@
 [
   {
-    "remote":      "github",
-    "repository":  "DerpFest-Devices/los_kernel_oneplus_msm8998",
+    "repository":  "kernel_oneplus_msm8998",
     "target_path": "kernel/oneplus/msm8998",
-    "branch":      "11"
   },
   {
-    "repository": "packages_apps_PixelLiveWallpaper",
-    "target_path": "packages/apps/PixelLiveWallpaper",
-    "branch": "ten",
-    "remote": "pixel-gitlab"
-  },
-  {
-    "repository": "TheMuppets/proprietary_vendor_oneplus",
+    "repository": "vendor_oneplus",
     "target_path": "vendor/oneplus",
-    "remote": "github"
   },
   {
-    "repository": "vendor_oneplus_firmware",
+    "repository": "xLexip/vendor_oneplus_firmware",
     "target_path": "vendor/oneplus/firmware",
     "branch": "main",
     "remote": "github"
