@@ -60,6 +60,7 @@ if [ -s "$MY_DIR"/../$DEVICE/proprietary-files.txt ]; then
 
     # The standard device blobs
     write_makefiles "$MY_DIR"/../$DEVICE/proprietary-files.txt true
+    write_makefiles "$MY_DIR"/../$DEVICE/proprietary-files-qc.txt true
 
     # We are done!
     write_footers
