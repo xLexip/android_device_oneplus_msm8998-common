@@ -65,6 +65,10 @@ vendor/bin/hw/vendor.oneplus.hardware.ifaa@2.0-service
 vendor/etc/init/vendor.oneplus.hardware.ifaa@2.0-service.rc
 vendor/lib64/vendor.oneplus.hardware.ifaa@2.0.so
 
+# AptX - From crosshatch-user 10 QQ3A.200805.001 6578210 release-keys
+product/lib64/libaptX_encoder.so|df1c89d7af1bb35808d5fe3496b04ba066c10cbc
+product/lib64/libaptXHD_encoder.so|e13fa70c97caaa24d061678bdee608eb8850a69e
+
 # Audio
 vendor/lib/libacdb-fts.so
 vendor/lib/libacdbloader.so
@@ -124,7 +128,6 @@ product/lib/vendor.qti.hardware.bluetooth_sar@1.0.so
 product/lib/vendor.qti.hardware.btconfigstore@1.0.so
 product/lib64/vendor.qti.hardware.bluetooth_sar@1.0.so
 product/lib64/vendor.qti.hardware.btconfigstore@1.0.so
-vendor/bin/ftmdaemon
 vendor/lib/btaudio_offload_if.so
 vendor/lib/hw/vendor.qti.hardware.bluetooth_audio@2.0-impl.so
 vendor/lib/hw/vendor.qti.hardware.bluetooth_sar@1.0-impl.so
@@ -514,7 +517,6 @@ product/lib64/vendor.qti.latency@2.0.so
 -vendor/app/CACertService/CACertService.apk
 -vendor/app/CneApp/CneApp.apk
 -vendor/app/IWlanService/IWlanService.apk
-vendor/bin/adpl
 vendor/bin/cnd
 vendor/bin/hw/vendor.qti.hardware.factory@1.0-service
 vendor/etc/cacert_location.pem
@@ -546,7 +548,6 @@ vendor/etc/cne/wqeclient/VZW/VZW_profile4.xml
 vendor/etc/cne/wqeclient/VZW/VZW_profile5.xml
 vendor/etc/cne/wqeclient/VZW/VZW_profile6.xml
 vendor/etc/init/cnd.rc
-vendor/etc/init/dataadpl.rc
 vendor/etc/init/init-qcril-data.rc
 vendor/etc/init/vendor.qti.hardware.factory@1.0-service.rc
 vendor/etc/permissions/vendor.qti.hardware.factory.xml:product/etc/permissions/vendor.qti.hardware.factory.xml
@@ -588,6 +589,26 @@ vendor/xbin/dashd
 # Display calib
 vendor/etc/qdcm_calib_data_samsung_s6e3fa5_1080p_cmd_mode_dsi_panel.xml
 vendor/etc/qdcm_calib_data_samsung_s6e3fa6_1080p_cmd_mode_dsi_panel.xml
+
+# DPM (product) - from jasmine V11.0.15.0.QDIMIXM
+product/bin/dpmd|49caa8e7d8af8055efdd7ebc0d7f7d67bc600041
+product/etc/dpm/dpm.conf|95e27da8c989e96c6faea6f0697bce11955b62a5
+product/etc/init/dpmd.rc|7f95195a89fddce06b93006a737701270e91f669
+product/etc/permissions/com.qti.dpmframework.xml|4613f8b8629d0b823e6aaab45d399ac30da06c09
+product/etc/permissions/dpmapi.xml|0991b3069308620cfcad53873e9f09af181b981d
+product/framework/com.qti.dpmframework.jar|e39a7e06af2d1e95a3724c19c36b8716277f53a1
+product/framework/dpmapi.jar|4696df9793ad676b305d53b5d7ce65ecf74771ad
+product/lib64/com.qualcomm.qti.dpm.api@1.0.so|a763bb1bbeecb84723bff6f547a3b23fab68dee3
+product/lib64/libdpmctmgr.so|3d4b87a4937caf3a8d276f48a4f0dc2cad246c5b
+product/lib64/libdpmfdmgr.so|e809155312a05d83b323ab0be64cb393d936e52a
+product/lib64/libdpmframework.so|8fd037eb8740a468a67c78e7fa01c69b1ba3fd2a|9f8fa8b5fbb3d1c41f497d538943841f5c9f48b7
+product/lib64/libdpmtcm.so|71a3d624602807f6fa6cbdb3a489efe9e93de634
+-product/priv-app/dpmserviceapp/dpmserviceapp.apk|9fd873c5330c03c62dfdeb6540b5984588295319
+
+# DPM (vendor)
+vendor/bin/dpmQmiMgr
+vendor/lib64/com.qualcomm.qti.dpm.api@1.0.so
+vendor/lib64/libdpmqmihal.so
 
 # DRM
 product/lib/libGPTEE_system.qti.so
@@ -814,25 +835,6 @@ vendor/lib64/vendor.display.color@1.2.so
 vendor/lib64/vendor.display.postproc@1.0.so
 vendor/lib64/vendor.qti.hardware.qdutils_disp@1.0.so
 
-# Improvetouch
-vendor/bin/hbtp_daemon
-vendor/etc/hbtp/hbtpcfg.dat
-vendor/etc/hbtp/hbtpcfg2.dat
-vendor/etc/hbtp/loader.cfg
-vendor/etc/hbtp/qtc800h.bin
-vendor/etc/hbtp/qtc800h_8998_660.bin
-vendor/etc/hbtp/qtc800s_dsp.bin
-vendor/lib/libhbtpclient.so
-vendor/lib/libhbtpdsp.so
-vendor/lib/libhbtpfrmwk.so
-vendor/lib/vendor.qti.hardware.improvetouch.touchcompanion@1.0-service.so
-vendor/lib/vendor.qti.hardware.improvetouch.touchcompanion@1.0.so
-vendor/lib64/libhbtpclient.so
-vendor/lib64/libhbtpdsp.so
-vendor/lib64/libhbtpfrmwk.so
-vendor/lib64/vendor.qti.hardware.improvetouch.touchcompanion@1.0-service.so
-vendor/lib64/vendor.qti.hardware.improvetouch.touchcompanion@1.0.so
-
 # IOP
 product/lib/vendor.qti.hardware.iop@1.0.so
 product/lib/vendor.qti.hardware.iop@2.0.so
@@ -871,14 +873,12 @@ vendor/lib/hw/keystore.msm8998.so
 vendor/lib64/hw/keystore.msm8998.so
 
 # Listen
+lib/liblistenjni.so:vendor/lib/liblistenjni.so
 lib/liblistensoundmodel2.so:vendor/lib/liblistensoundmodel2.so
-lib64/liblistensoundmodel2.so:vendor/lib64/liblistensoundmodel2.so
 vendor/lib/hw/sound_trigger.primary.msm8998.so
 vendor/lib/libadpcmdec.so
 vendor/lib/libmulawdec.so
 vendor/lib/libsmwrapper.so
-vendor/lib64/hw/sound_trigger.primary.msm8998.so
-vendor/lib64/libmulawdec.so
 
 # Media
 lib/libmmosal.so
@@ -1097,7 +1097,6 @@ product/framework/qcrilhook.jar
 -product/priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
 vendor/bin/ATFWD-daemon
 vendor/bin/netmgrd
-vendor/bin/qti
 vendor/bin/rmt_storage
 vendor/bin/tftp_server
 vendor/etc/data/dsi_config.xml
@@ -1374,13 +1373,6 @@ vendor/lib/hw/vendor.qti.hardware.soter@1.0-impl.so
 vendor/lib/vendor.qti.hardware.soter@1.0.so
 vendor/lib64/hw/vendor.qti.hardware.soter@1.0-impl.so
 vendor/lib64/vendor.qti.hardware.soter@1.0.so
-
-# SSR
-vendor/bin/qcom-system-daemon
-vendor/bin/ssr_setup
-vendor/bin/subsystem_ramdump
-vendor/lib64/libSubSystemShutdown.so
-vendor/lib64/libsubsystem_control.so
 
 # Thermal
 vendor/bin/thermal-engine
