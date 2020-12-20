@@ -550,8 +550,8 @@ on charger
     write /sys/devices/system/cpu/cpu7/online 0
 
 on property:sys.boot_completed=1
-    # Set BFQ I/O scheduler
-    setprop sys.io.scheduler "bfq"
+    # Set CFQ I/O scheduler
+    setprop sys.io.scheduler "cfq"
 
     # Enable UFS powersaving
     write /sys/devices/soc/${ro.boot.bootdevice}/clkscale_enable 1
@@ -565,9 +565,9 @@ on property:sys.boot_completed=1
     write /dev/cpuset/restricted/cpus 0-3
     write /dev/cpuset/camera-daemon/cpus 0-3
 
-    # Reset read ahead for dm-0 and dm-1 to 512kb
-    write /sys/block/dm-0/queue/read_ahead_kb 512
-    write /sys/block/dm-1/queue/read_ahead_kb 512
+    # Reset read ahead for dm-0 and dm-1 to 128kb
+    write /sys/block/dm-0/queue/read_ahead_kb 128
+    write /sys/block/dm-1/queue/read_ahead_kb 128
 
     # WDSP FW boot sysfs node used by STHAL
     chown media audio /sys/kernel/wdsp0/boot
