@@ -381,7 +381,7 @@ PRODUCT_PACKAGES += \
     LexipsHub
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilts/system/etc/permissions/dev.lexip.notifier.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/dev.lexip.notifier.xml
+    $(LOCAL_PATH)/prebuilts/system/etc/permissions/dev.lexip.hub.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/dev.lexip.hub.xml
 
 
 # Privapp Whitelist
