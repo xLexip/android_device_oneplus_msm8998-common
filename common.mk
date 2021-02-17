@@ -442,10 +442,6 @@ PRODUCT_PACKAGES += \
     ipacm \
     IPACM_cfg.xml
 
-# Touch
-PRODUCT_PACKAGES += \
-    vendor.lineage.touch@1.0-service.oneplus_msm8998
-
 # USB
 PRODUCT_PACKAGES += \
     android.hardware.usb@1.0-service.basic
