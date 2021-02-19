@@ -13,28 +13,6 @@ LOCAL_OVERRIDES_PACKAGES := SnapdragonCamera Camera2 Snap Snap2
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE := OnePlusCamera
-LOCAL_MODULE_TAGS := optional
-LOCAL_SRC_FILES := system/priv-app/OnePlusCamera/onepluscamera.apk
-LOCAL_CERTIFICATE := PRESIGNED
-LOCAL_MODULE_CLASS := APPS
-LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
-LOCAL_MODULE_PATH := $(TARGET_OUT)/priv-app
-LOCAL_DEX_PREOPT := false
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE := OnePlusGallery
-LOCAL_MODULE_TAGS := optional
-LOCAL_SRC_FILES := system/priv-app/OnePlusGallery/oneplusgallery.apk
-LOCAL_CERTIFICATE := PRESIGNED
-LOCAL_MODULE_CLASS := APPS
-LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
-LOCAL_MODULE_PATH := $(TARGET_OUT)/priv-app
-LOCAL_DEX_PREOPT := false
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
 LOCAL_MODULE := LexipsHub
 LOCAL_MODULE_TAGS := optional
 LOCAL_SRC_FILES := system/priv-app/LexipsHub/app-release.apk

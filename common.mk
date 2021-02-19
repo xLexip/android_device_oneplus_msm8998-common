@@ -371,18 +371,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilts/system/etc/permissions/com.google.android.GoogleCameraEng.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/com.google.android.GoogleCameraEng.xml
 
 PRODUCT_PACKAGES += \
-    OnePlusCamera
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilts/system/etc/permissions/com.oneplus.camera.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/com.oneplus.camera.xml
-
-PRODUCT_PACKAGES += \
-    OnePlusGallery
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilts/system/etc/permissions/com.oneplus.gallery.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/com.oneplus.gallery.xml
-
-PRODUCT_PACKAGES += \
     LexipsHub
 
 PRODUCT_COPY_FILES += \
