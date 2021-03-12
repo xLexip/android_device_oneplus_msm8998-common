@@ -4,8 +4,8 @@
 
     <array name="config_doze_brightness_sensor_to_brightness">
         <item>1</item>
-        <item>10</item>
-        <item>40</item>
+        <item>15</item>
+        <item>50</item>
         <item>100</item>
         <item>180</item>
         <item>254</item>
