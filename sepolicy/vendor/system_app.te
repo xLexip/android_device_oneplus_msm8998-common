@@ -19,6 +19,10 @@ allow system_app sysfs_vibrator:dir search;
 allow system_app sysfs_dm:file rw_file_perms;
 allow system_app sysfs_graphics:dir search;
 allow system_app sysfs_graphics:file rw_file_perms;
+allow system_app sysfs_vibrator:file rw_file_perms;
+allow system_app sysfs_vibrator:dir search;
+allow system_app sysfs_leds:dir search;
+allow system_app apk_data_file:dir { write };
 
 allow system_app sysfs_leds:dir search;
 allow system_app apk_data_file:dir { write };
