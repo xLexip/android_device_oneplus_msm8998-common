@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2015 The CyanogenMod Project
- *               2017-2018 The LineageOS Project
+ *               2017-2019 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,7 +25,6 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
 import androidx.preference.PreferenceFragment;
 import androidx.preference.SwitchPreference;
 import androidx.preference.Preference;
@@ -39,24 +38,15 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import androidx.preference.Preference;
-import androidx.preference.Preference.OnPreferenceChangeListener;
-import androidx.preference.PreferenceCategory;
-import androidx.preference.PreferenceFragment;
-import androidx.preference.SwitchPreference;
-
 public class DozeSettingsFragment extends PreferenceFragment implements OnPreferenceChangeListener,
         CompoundButton.OnCheckedChangeListener {
 
     private TextView mTextView;
     private View mSwitchBar;
 
-    private SwitchPreference mAlwaysOnDisplayPreference;
     private SwitchPreference mPickUpPreference;
     private SwitchPreference mHandwavePreference;
     private SwitchPreference mPocketPreference;
-
-    private Handler mHandler = new Handler();
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -72,13 +62,8 @@ public class DozeSettingsFragment extends PreferenceFragment implements OnPrefer
 
         boolean dozeEnabled = Utils.isDozeEnabled(getActivity());
 
-        mAlwaysOnDisplayPreference = (SwitchPreference) findPreference(Utils.ALWAYS_ON_DISPLAY);
-        mAlwaysOnDisplayPreference.setEnabled(dozeEnabled);
-        mAlwaysOnDisplayPreference.setOnPreferenceChangeListener(this);
-
         PreferenceCategory pickupSensorCategory =
                 (PreferenceCategory) getPreferenceScreen().findPreference(Utils.CATEG_PICKUP_SENSOR);
-
         PreferenceCategory proximitySensorCategory =
                 (PreferenceCategory) getPreferenceScreen().findPreference(Utils.CATEG_PROX_SENSOR);
 
@@ -97,11 +82,6 @@ public class DozeSettingsFragment extends PreferenceFragment implements OnPrefer
         // Hide proximity sensor related features if the device doesn't support them
         if (!Utils.getProxCheckBeforePulse(getActivity())) {
             getPreferenceScreen().removePreference(proximitySensorCategory);
-        }
-
-        // Hide AOD if not supported and set all its dependents otherwise
-        if (!Utils.alwaysOnDisplayAvailable(getActivity())) {
-            getPreferenceScreen().removePreference(mAlwaysOnDisplayPreference);
         }
     }
 
@@ -136,12 +116,12 @@ public class DozeSettingsFragment extends PreferenceFragment implements OnPrefer
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-      if (Utils.ALWAYS_ON_DISPLAY.equals(preference.getKey())) {
-          Utils.enableAlwaysOn(getActivity(), (Boolean) newValue);
-      } else {
-          Utils.enableGesture(getActivity(), preference.getKey(), (Boolean) newValue);
-      }
-        mHandler.post(() -> Utils.checkDozeService(getActivity()));
+        if (Utils.ALWAYS_ON_DISPLAY.equals(preference.getKey())) {
+            Utils.enableAlwaysOn(getActivity(), (Boolean) newValue);
+        } else {
+            Utils.enableGesture(getActivity(), preference.getKey(), (Boolean) newValue);
+        }
+        Utils.checkDozeService(getActivity());
 
         return true;
     }
@@ -156,9 +136,7 @@ public class DozeSettingsFragment extends PreferenceFragment implements OnPrefer
 
         if (!isChecked) {
             Utils.enableAlwaysOn(getActivity(), false);
-            mAlwaysOnDisplayPreference.setChecked(false);
         }
-        mAlwaysOnDisplayPreference.setEnabled(isChecked);
 
         mPickUpPreference.setEnabled(isChecked);
         mHandwavePreference.setEnabled(isChecked);
@@ -172,11 +150,6 @@ public class DozeSettingsFragment extends PreferenceFragment implements OnPrefer
             return true;
         }
         return false;
-    }
-
-    private void showHelp() {
-        HelpDialogFragment fragment = new HelpDialogFragment();
-        fragment.show(getFragmentManager(), "help_dialog");
     }
 
     public static class HelpDialogFragment extends DialogFragment {
@@ -196,5 +169,10 @@ public class DozeSettingsFragment extends PreferenceFragment implements OnPrefer
                     .putBoolean("first_help_shown", true)
                     .commit();
         }
+    }
+
+    private void showHelp() {
+        HelpDialogFragment fragment = new HelpDialogFragment();
+        fragment.show(getFragmentManager(), "help_dialog");
     }
 }
