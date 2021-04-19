@@ -100,10 +100,6 @@ vendor.display.perf_hint_window=50
 vendor.gralloc.disable_wb_ubwc=1
 vendor.gralloc.enable_fb_ubwc=1
 
-# IOP
-vendor.iop.enable_prefetch_ofr=0
-vendor.iop.enable_uxe=0
-
 # Media
 vendor.vidc.debug.level=1
 
