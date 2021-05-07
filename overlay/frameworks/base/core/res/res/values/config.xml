@@ -695,4 +695,7 @@
 
     <!--  Whether Multiuser UI should be shown -->
     <bool name="config_enableMultiUserUI">true</bool>
+
+    <!-- Corner radius of system dialogs -->
+    <dimen name="config_dialogCornerRadius">20dp</dimen>
 </resources>
