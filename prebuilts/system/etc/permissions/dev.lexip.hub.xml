@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<permissions>
+    <privapp-permissions package="dev.lexip.hub">
+        <permission name="android.permission.INTERNET"/>
+        <permission name="android.permission.RECIEVE_BOOT_COMPLETED"/>
+        <permission name="android.permission.FOREGROUND_SERVICE"/>
+        <permission name="android.permission.REQUEST_DELETE_PACKAGES"/>
+        <permission name="android.permission.ACCESS_NETWORK_STATE"/>
+        <permission name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+        <permission name="android.permission.READ_EXTERNAL_STORAGE"/>
+        <permission name="android.permission.REBOOT"/>
+        <permission name="android.permission.ACCESS_CACHE_FILESYSTEM"/>
+        <permission name="android.permission.DELETE_CACHE_FILES"/>
+        <permission name="android.permission.RECOVERY"/>
+        <permission name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION"/>
+        <permission name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"/>
+    </privapp-permissions>
+</permissions>
