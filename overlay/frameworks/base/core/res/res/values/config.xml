@@ -554,6 +554,18 @@
         <item>0:2:15</item> <!-- ID0:Fingerprint:Strong -->
     </string-array>
 
+    <!-- Paths to the libraries that contain device specific key handlers -->
+    <string-array name="config_deviceKeyHandlerLibs" translatable="false">
+        <item>/system/priv-app/DeviceSettings/DeviceSettings.apk</item>
+        <item>/system/priv-app/DeviceSettings/DeviceSettings.apk</item>
+    </string-array>
+
+    <!-- Names of the key handler classes -->
+    <string-array name="config_deviceKeyHandlerClasses" translatable="false">
+        <item>com.oneplus.extras.DeviceSettings.KeyHandler</item>
+        <item>com.oneplus.extras.DeviceSettings.TouchKeyHandler</item>
+    </string-array>
+
     <!-- Control whether the always on display mode is available. This should only be enabled on
      devices where the display has been tuned to be power efficient in DOZE and/or DOZE_SUSPEND
      states. -->
