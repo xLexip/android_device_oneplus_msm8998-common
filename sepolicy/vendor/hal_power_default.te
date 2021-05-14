@@ -1,3 +1,9 @@
+allow hal_power_default proc_touchpanel:dir { search };
+allow hal_power_default proc_touchpanel:file { rw_file_perms };
+
+allow hal_power_default pps_socket:sock_file write;
+allow hal_power_default mm-pp-daemon:unix_stream_socket connectto;
+
 r_dir_file(hal_power_default, debugfs_rpm)
 r_dir_file(hal_power_default, sysfs_devfreq)
 r_dir_file(hal_power_default, sysfs_graphics)
