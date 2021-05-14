@@ -18,30 +18,24 @@
         <SwitchPreference
             android:key="dc"
             android:icon="@drawable/ic_dc_mode_icon"
-            android:summary="@string/dc_mode_summary"
-            android:title="@string/dc_mode_title" />
+            android:summary="@string/dc_dimming_enable_summary"
+            android:title="@string/dc_dimming_enable_title" />
 
         <Preference
             android:key="panel_category"
             android:icon="@drawable/ic_panel_modes_icon"
-            android:title="@string/panel_category_title"
-            android:summary="@string/panel_category_summary"
+            android:title="Panel Modes"
+            android:summary="Panel color correction"
             android:persistent="false" >
             <intent android:action="android.intent.action.MAIN"
                     android:targetPackage="com.oneplus.extras.DeviceSettings"
                     android:targetClass="com.oneplus.extras.DeviceSettings.PanelSettingsActivity" />
         </Preference>
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        android:key="fps"
-        android:title="@string/fps_title">
 
         <SwitchPreference
             android:key="fps_info"
             android:icon="@drawable/ic_fps_overlay_icon"
-            android:title="@string/fps_info_title"
-            android:summary="@string/fps_info_summary"
+            android:title="FPS Overlay"
             android:persistent="true" />
     </PreferenceCategory>
 
@@ -77,27 +71,22 @@
           android:entryValues="@array/notification_slider_action_entry_values" />
     </PreferenceCategory>
 
-    <PreferenceCategory 
-        android:title="@string/button_dashboard_summary">
-
-        <SwitchPreference
-            android:key="button_swap"
-            android:title="@string/button_swap_title"
-            android:summary="@string/button_swap_summary" />
-    </PreferenceCategory>
-
     <PreferenceCategory
-        android:key="vibrator"
-        android:title="@string/category_vibrator">
+        android:title="Vibrator"
+        android:key="vibrator">
 
         <com.oneplus.extras.DeviceSettings.VibratorStrengthPreference
             android:key="vib_strength"
             android:icon="@drawable/ic_vibration_icon"
-            android:title="@string/vib_strength_title_head"
-            android:summary="@string/vib_strength_summary_head" />
-        <Preference
-            android:icon="@drawable/ic_info_outline_24dp"
-            android:persistent="false"
-            android:summary="@string/vibration_warning" />
+            android:title="Vibration Strength" />
     </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Buttons">
+
+        <SwitchPreference
+            android:key="button_swap"
+            android:title="Swap Navigation Buttons" />
+    </PreferenceCategory>
+
 </PreferenceScreen>

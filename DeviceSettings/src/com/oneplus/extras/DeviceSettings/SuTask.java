@@ -47,7 +47,7 @@ public abstract class SuTask<Params> extends AsyncTask<Params, Void, Boolean> {
     protected void onPostExecute(Boolean result) {
         super.onPostExecute(result);
         if (!result) {
-            Toast.makeText(mContext, R.string.cannot_get_su,
+            Toast.makeText(mContext, "NO SU",
                     Toast.LENGTH_LONG).show();
         }
     }

@@ -36,13 +36,13 @@
 
     <application
         android:icon="@drawable/ic_settings_device"
-        android:label="@string/device_title"
+        android:label="@string/oneplus_advanced_settings"
         android:theme="@style/AppTheme">
 
         <!-- Device Settings -->
         <activity
             android:name=".DeviceSettingsActivity"
-            android:label="@string/device_title">
+            android:label="@string/oneplus_advanced_settings">
             <intent-filter>
                 <action android:name="com.android.settings.action.EXTRA_SETTINGS" />
             </intent-filter>
@@ -53,7 +53,7 @@
                 android:name="com.android.settings.category"
                 android:value="com.android.settings.category.ia.homepage" />
             <meta-data android:name="com.android.settings.summary"
-                android:resource="@string/device_summary" />
+                android:resource="@string/oneplus_advanced_settings_summary" />
         </activity>
 
         <activity android:name=".DeviceSettings" />
@@ -62,7 +62,7 @@
         <activity
             android:name="com.oneplus.extras.DeviceSettings.PanelSettingsActivity"
             android:exported="true"
-            android:label="@string/panel_category_title"
+            android:label="Panel Modes"
             android:launchMode="singleTask"
             android:noHistory="true">
             <intent-filter>
@@ -81,7 +81,7 @@
         <service
             android:name="com.oneplus.extras.DeviceSettings.DCModeTileService"
             android:icon="@drawable/ic_dimming_off"
-            android:label="@string/tile_dc_mode"
+            android:label="@string/dc_dimming_enable_title"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
                 <action
@@ -91,7 +91,7 @@
         <service
             android:name="com.oneplus.extras.DeviceSettings.PanelModeTileService"
             android:icon="@drawable/ic_panel_tile"
-            android:label="@string/tile_panel_mode"
+            android:label="Panel Mode"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
                 <action
@@ -101,7 +101,7 @@
         <service
             android:name="com.oneplus.extras.DeviceSettings.HBMModeTileService"
             android:icon="@drawable/ic_hbm_tile"
-            android:label="@string/tile_hbm_mode"
+            android:label="High Brightness Mode"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
                 <action
@@ -113,7 +113,7 @@
         <service
             android:name=".FPSTileService"
             android:icon="@drawable/ic_fps"
-            android:label="@string/fps_info_title"
+            android:label="FPS Overlay"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
                 <action
