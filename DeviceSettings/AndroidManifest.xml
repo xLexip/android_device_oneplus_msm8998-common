@@ -121,18 +121,6 @@
             </intent-filter>
         </service>
 
-        <!-- Thermal profiles tile -->
-        <service
-            android:name="com.oneplus.extras.DeviceSettings.thermal.ThermalTileService"
-            android:icon="@drawable/ic_thermal"
-            android:label="@string/thermal_title"
-            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
-            <intent-filter>
-                <action
-                    android:name="android.service.quicksettings.action.QS_TILE"/>
-            </intent-filter>
-        </service>
-
         <service android:name="com.oneplus.extras.DeviceSettings.FPSInfoService"
                 android:exported="false">
         </service>
