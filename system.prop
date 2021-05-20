@@ -20,7 +20,7 @@ persist.camera.mobicat=2
 persist.camera.stats.debugexif=3080192
 
 # Charger
-ro.charger.enable_suspend=true
+ro.charger.enable_suspend=false
 
 # DRM
 drm.service.enabled=true
