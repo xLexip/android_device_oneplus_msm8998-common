@@ -69,6 +69,9 @@ function blob_fixup() {
         product/etc/permissions/vendor-qti-hardware-sensorscalibrate.xml )
             sed -i "s/\/system\/framework\//\/system\/product\/framework\//g" "${2}"
             ;;
+        lib/libwfdmmsink.so)
+            "${PATCHELF}" --add-needed "libshim_wfdmmsink.so" "${2}"
+            ;;
         system_ext/etc/init/dpmd.rc)
             sed -i "s/\/system\/product\/bin\//\/system\/system_ext\/bin\//g" "${2}"
             ;;

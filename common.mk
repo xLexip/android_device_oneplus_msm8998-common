@@ -181,15 +181,16 @@ PRODUCT_PACKAGES += \
     hwcomposer.msm8998 \
     memtrack.msm8998 \
     libdisplayconfig \
+    libdisplayconfig.qti \
+    libdisplayconfig.qti.vendor \
     libhwc2on1adapter \
     libtinyxml \
-    libqdMetaData \
-    libqdMetaData.system \
-    libvulkan
+    libvulkan \
+    libqdMetaData
 
 PRODUCT_PACKAGES += \
-    vendor.display.config@1.9 \
-    vendor.display.config@1.9_vendor
+    vendor.display.config@2.0 \
+    vendor.display.config@2.0.vendor
 
 # Doze
 PRODUCT_PACKAGES += \
@@ -520,7 +521,9 @@ PRODUCT_COPY_FILES += \
 # Wi-Fi Display
 PRODUCT_PACKAGES += \
     libaacwrapper \
-    libnl
+    libnl \
+    libshim_wfdmmsink \
+    libstagefright_enc_common
 
 PRODUCT_BOOT_JARS += \
     WfdCommon
