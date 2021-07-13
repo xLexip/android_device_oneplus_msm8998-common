@@ -31,12 +31,6 @@
                     android:targetPackage="com.oneplus.extras.DeviceSettings"
                     android:targetClass="com.oneplus.extras.DeviceSettings.PanelSettingsActivity" />
         </Preference>
-
-        <SwitchPreference
-            android:key="fps_info"
-            android:icon="@drawable/ic_fps_overlay_icon"
-            android:title="FPS Overlay"
-            android:persistent="true" />
     </PreferenceCategory>
 
     <PreferenceCategory

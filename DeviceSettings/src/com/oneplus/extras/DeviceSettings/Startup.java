@@ -49,10 +49,6 @@ public class Startup extends BroadcastReceiver {
         restore(AdaptiveModeSwitch.getFile(), enabled);
         enabled = sharedPrefs.getBoolean(DeviceSettings.KEY_ONEPLUS_SWITCH, false);
         restore(OnePlusModeSwitch.getFile(), enabled);
-        enabled = sharedPrefs.getBoolean(DeviceSettings.KEY_FPS_INFO, false);
-        if (enabled) {
-            context.startService(new Intent(context, FPSInfoService.class));
-        }
         VibratorStrengthPreference.restore(context);
 
         enabled = sharedPrefs.getBoolean(DeviceSettings.KEY_BUTTON_SWAP, false);

@@ -108,10 +108,6 @@ public class DeviceSettings extends PreferenceFragment
         mDCModeSwitch.setChecked(DCModeSwitch.isCurrentlyEnabled(this.getContext()));
         mDCModeSwitch.setOnPreferenceChangeListener(new DCModeSwitch());
 
-        mFpsInfo = (SwitchPreference) findPreference(KEY_FPS_INFO);
-        mFpsInfo.setChecked(prefs.getBoolean(KEY_FPS_INFO, false));
-        mFpsInfo.setOnPreferenceChangeListener(this);
-
         mButtonSwap = (TwoStatePreference) findPreference(KEY_BUTTON_SWAP);
         mButtonSwap.setEnabled(ButtonSwap.isSupported());
         mButtonSwap.setChecked(ButtonSwap.isCurrentlyEnabled(this.getContext()));
@@ -120,17 +116,7 @@ public class DeviceSettings extends PreferenceFragment
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-        if (preference == mFpsInfo) {
-            boolean enabled = (Boolean) newValue;
-            Intent fpsinfo = new Intent(this.getContext(), com.oneplus.extras.DeviceSettings.FPSInfoService.class);
-            if (enabled) {
-                this.getContext().startService(fpsinfo);
-            } else {
-                this.getContext().stopService(fpsinfo);
-            }
-        } else {
-            Constants.setPreferenceInt(getContext(), preference.getKey(), Integer.parseInt((String) newValue));
-        }
+        Constants.setPreferenceInt(getContext(), preference.getKey(), Integer.parseInt((String) newValue));
         return true;
     }
 
