@@ -62,7 +62,7 @@
         <activity
             android:name="com.oneplus.extras.DeviceSettings.PanelSettingsActivity"
             android:exported="true"
-            android:label="Panel Modes"
+            android:label="@string/panel_modes_settings_title"
             android:launchMode="singleTask"
             android:noHistory="true">
             <intent-filter>
@@ -91,7 +91,7 @@
         <service
             android:name="com.oneplus.extras.DeviceSettings.PanelModeTileService"
             android:icon="@drawable/ic_panel_tile"
-            android:label="Panel Mode"
+            android:label="@string/panel_modes_settings_title"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
                 <action
@@ -101,7 +101,7 @@
         <service
             android:name="com.oneplus.extras.DeviceSettings.HBMModeTileService"
             android:icon="@drawable/ic_hbm_tile"
-            android:label="High Brightness Mode"
+            android:label="@string/hbm_title"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
                 <action
@@ -109,21 +109,6 @@
             </intent-filter>
         </service>
 
-        <!-- FPS overlay tile -->
-        <service
-            android:name=".FPSTileService"
-            android:icon="@drawable/ic_fps"
-            android:label="FPS Overlay"
-            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
-            <intent-filter>
-                <action
-                    android:name="android.service.quicksettings.action.QS_TILE"/>
-            </intent-filter>
-        </service>
-
-        <service android:name="com.oneplus.extras.DeviceSettings.FPSInfoService"
-                android:exported="false">
-        </service>
 
         <!-- Search indexing -->
         <provider

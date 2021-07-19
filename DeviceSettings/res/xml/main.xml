@@ -24,8 +24,8 @@
         <Preference
             android:key="panel_category"
             android:icon="@drawable/ic_panel_modes_icon"
-            android:title="Panel Modes"
-            android:summary="Panel color correction"
+            android:title="@string/panel_modes_settings_title"
+            android:summary="@string/panel_modes_settings_summary"
             android:persistent="false" >
             <intent android:action="android.intent.action.MAIN"
                     android:targetPackage="com.oneplus.extras.DeviceSettings"
@@ -76,11 +76,11 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="Buttons">
+        android:title="@string/button_settings_title">
 
         <SwitchPreference
             android:key="button_swap"
-            android:title="Swap Navigation Buttons" />
+            android:title="@string/button_swap_summary" />
     </PreferenceCategory>
 
 </PreferenceScreen>
