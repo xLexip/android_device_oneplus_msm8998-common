@@ -66,16 +66,6 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="Vibrator"
-        android:key="vibrator">
-
-        <com.oneplus.extras.DeviceSettings.VibratorStrengthPreference
-            android:key="vib_strength"
-            android:icon="@drawable/ic_vibration_icon"
-            android:title="Vibration Strength" />
-    </PreferenceCategory>
-
-    <PreferenceCategory
         android:title="@string/button_settings_title">
 
         <SwitchPreference

@@ -61,7 +61,6 @@ public class DeviceSettings extends PreferenceFragment
     public static final String KEY_ADAPTIVE_SWITCH = "adaptive";
     public static final String KEY_ONEPLUS_SWITCH = "oneplus";
     public static final String KEY_BUTTON_SWAP = "button_swap";
-    public static final String KEY_VIBSTRENGTH = "vib_strength";
     public static final String KEY_FPS_INFO = "fps_info";
 
     private static SwitchPreference mFpsInfo;
@@ -72,7 +71,6 @@ public class DeviceSettings extends PreferenceFragment
     private ListPreference mTopKeyPref;
     private ListPreference mMiddleKeyPref;
     private ListPreference mBottomKeyPref;
-    private VibratorStrengthPreference mVibratorStrength;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -89,9 +87,6 @@ public class DeviceSettings extends PreferenceFragment
 
         getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mVibratorStrength = (VibratorStrengthPreference) findPreference(KEY_VIBSTRENGTH);
-        if (mVibratorStrength != null)
-            mVibratorStrength.setEnabled(VibratorStrengthPreference.isSupported());
 
         mTopKeyPref = (ListPreference) findPreference(Constants.NOTIF_SLIDER_TOP_KEY);
         mTopKeyPref.setValueIndex(Constants.getPreferenceInt(getContext(), Constants.NOTIF_SLIDER_TOP_KEY));
