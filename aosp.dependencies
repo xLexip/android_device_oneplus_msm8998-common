@@ -1,10 +1,13 @@
 [
   {
-    "repository": "kernel_oneplus_msm8998",
-    "target_path": "kernel/oneplus/msm8998"
+    "repository"  : "kernel_oneplus_msm8998",
+    "target_path" : "kernel/oneplus/msm8998"
+    "branch"      : "eleven",
+    "remote"      : "pixel-devices"
   },
   {
-    "repository": "vendor_oneplus",
-    "target_path": "vendor/oneplus"
+    "repository"  : "vendor_oneplus_msm8998-common",
+    "target_path" : "vendor/oneplus/msm8998-common",
+    "branch"      : "eleven",
+    "remote"      : "pixel-devices-blobs"
   }
-]
