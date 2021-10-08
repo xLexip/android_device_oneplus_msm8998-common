@@ -250,8 +250,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     org.ifaa.android.manager
 
-PRODUCT_BOOT_JARS += \
-    org.ifaa.android.manager
+#PRODUCT_BOOT_JARS += \
+#    org.ifaa.android.manager
 
 # IRQ
 PRODUCT_COPY_FILES += \
@@ -271,8 +271,8 @@ PRODUCT_PACKAGES += \
     android.hardware.light@2.0-service.oneplus_msm8998
 
 # LiveDisplay
-PRODUCT_PACKAGES += \
-    vendor.lineage.livedisplay@2.0-service.oneplus_msm8998
+#PRODUCT_PACKAGES += \
+#    vendor.lineage.livedisplay@2.0-service.oneplus_msm8998
 
 # Media
 PRODUCT_COPY_FILES += \
@@ -343,8 +343,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/system_ext-privapp-permissions-qti.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-qti.xml
 
 # Pocket mode
-PRODUCT_PACKAGES += \
-    OnePlusPocketMode
+#PRODUCT_PACKAGES += \
+#    OnePlusPocketMode
 
 # Power
 PRODUCT_PACKAGES += \
@@ -451,10 +451,10 @@ PRODUCT_COPY_FILES += \
     prebuilts/vndk/v29/arm64/arch-arm64-armv8-a/shared/vndk-sp/libcutils.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/libcutils-v29.so
 
 # VR
-PRODUCT_PACKAGES += \
-    android.hardware.vr@1.0-impl \
-    android.hardware.vr@1.0-service \
-    vr.msm8998
+#PRODUCT_PACKAGES += \
+#    android.hardware.vr@1.0-impl \
+#    android.hardware.vr@1.0-service \
+#    vr.msm8998
 
 # Weaver
 PRODUCT_PACKAGES += \
