@@ -48,7 +48,6 @@ persist.radio.multisim.config=dsds
 persist.sys.assert.panic=false
 persist.sys.oem.region=OverSeas
 ril.subscription.types=NV,RUIM
-ro.com.android.dataroaming=true
 ro.telephony.call_ring.multiple=false
 ro.telephony.default_network=22,20
 ro.telephony.iwlan_operation_mode=legacy
