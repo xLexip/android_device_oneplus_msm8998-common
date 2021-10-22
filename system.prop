@@ -49,7 +49,6 @@ media.stagefright.thumbnail.prefer_hw_codecs=true
 keyguard.no_require_sim=true
 persist.radio.multisim.config=dsds
 ril.subscription.types=NV,RUIM
-ro.com.android.dataroaming=true
 ro.telephony.call_ring.multiple=false
 ro.telephony.default_network=22,20
 ro.telephony.iwlan_operation_mode=legacy
