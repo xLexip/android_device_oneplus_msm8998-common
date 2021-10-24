@@ -47,6 +47,7 @@ keyguard.no_require_sim=true
 persist.radio.multisim.config=dsds
 persist.sys.assert.panic=false
 persist.sys.oem.region=OverSeas
+persist.sys.fflag.override.settings_provider_model=false
 ril.subscription.types=NV,RUIM
 ro.telephony.call_ring.multiple=false
 ro.telephony.default_network=22,20
