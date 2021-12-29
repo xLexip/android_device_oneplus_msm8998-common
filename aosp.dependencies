@@ -1,10 +1,9 @@
 
 [
   {
-    "repository"  : "xLexip/android_hardware_oneplus",
+    "repository"  : "hardware_oneplus",
     "target_path" : "hardware/oneplus",
-    "branch"      : "twelve",
-    "remote"      : "github"
+    "remote"      : "pixel"
   },
   {
     "repository"  : "kernel_oneplus_msm8998",
