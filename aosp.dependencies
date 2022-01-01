@@ -1,11 +1,6 @@
 
 [
   {
-    "repository"  : "hardware_oneplus",
-    "target_path" : "hardware/oneplus",
-    "remote"      : "pixel"
-  },
-  {
     "repository"  : "kernel_oneplus_msm8998",
     "target_path" : "kernel/oneplus/msm8998"
     "branch"      : "twelve",
