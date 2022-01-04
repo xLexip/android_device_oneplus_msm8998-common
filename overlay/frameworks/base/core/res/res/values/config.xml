@@ -568,21 +568,9 @@
         <item>com.oneplus.extras.DeviceSettings.KeyHandler</item>
         <item>com.oneplus.extras.DeviceSettings.TouchKeyHandler</item>
     </string-array>
-
-    <!-- Default value for proximity check on screen wake
-     NOTE ! - Enable for devices that have a fast response proximity sensor (ideally < 300ms)-->
-    <bool name="config_proximityCheckOnWake">true</bool>
-    <integer name="config_proximityCheckTimeout">100</integer>
-    <bool name="config_proximityCheckOnWakeEnabledByDefault">true</bool>
-
-    <!-- Defines the custom pickup sensor used by various OEMs like OnePlus-->
-    <string name="config_dozePickupSensorType">com.oneplus.sensor.pickup</string>
     
     <!-- Whether navigation bar can be disabled (for devices with hardware keys) -->
     <bool name="config_canDisableNavigationBar">true</bool>
-
-    <!-- Path to fast charging status file to detect whether an oem fast charger is active -->
-    <string name="config_oemFastChargerStatusPath" translatable="false">/sys/class/power_supply/battery/fastchg_status</string>
 
     <!-- Whether device has dash charging support -->
     <bool name="config_hasDashCharger">true</bool>
