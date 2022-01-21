@@ -57,7 +57,6 @@
         </activity>
 
         <activity android:name=".DeviceSettings" />
-        <activity android:name=".KeyHandler" />
 
         <activity
             android:name="com.oneplus.extras.DeviceSettings.PanelSettingsActivity"
