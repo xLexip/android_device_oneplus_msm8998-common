@@ -568,7 +568,10 @@
         <item>com.oneplus.extras.DeviceSettings.KeyHandler</item>
         <item>com.oneplus.extras.DeviceSettings.TouchKeyHandler</item>
     </string-array>
-    
+
+    <!-- Fix double tap to wake after Ambient pulse -->
+    <bool name="config_has_weird_dt_sensor">true</bool>
+
     <!-- Whether navigation bar can be disabled (for devices with hardware keys) -->
     <bool name="config_canDisableNavigationBar">true</bool>
 
