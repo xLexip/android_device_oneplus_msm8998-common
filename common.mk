@@ -346,6 +346,10 @@ PRODUCT_PACKAGES += \
     libOmxVenc \
     libstagefrighthw
 
+# Doze
+PRODUCT_PACKAGES += \
+    OnePlusDoze
+
 # Privapp Whitelist
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/system_ext-privapp-permissions-qti.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/system_ext-privapp-permissions-qti.xml \
