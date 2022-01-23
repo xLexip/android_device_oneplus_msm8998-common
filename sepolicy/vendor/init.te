@@ -8,3 +8,5 @@ allow init vendor_device_prop:file { read write relabelto };
 allow init vendor_param_prop:file { read write relabelto };
 allow init vendor_power_prop:file { read write relabelto };
 
+allow init system_data_file:dir { write };
+
